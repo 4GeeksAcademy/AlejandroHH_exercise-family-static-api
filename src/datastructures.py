@@ -46,53 +46,31 @@ class FamilyStructure:
         return randint(0, 99999999)
 
     def add_member(self, member):
-        names = ["Alejandro", "José", "Pedro", "Sara", "María", "Judith"]
-
-        # fill this method and update the return
-        def randomName(name):
-            random_name = random.choice(name)
-            return random_name
-        
-        def random_age():
-            randomAge = randint(1, 130)
-            return randomAge
-        
-        def random_lucky_number():
-            luckyNumber1 = randint(1, 99)
-            luckyNumber2 = randint(1, 99)
-            luckyNumber3 = randint(1, 99)
-
-            luckyNumber = [luckyNumber1, luckyNumber2, luckyNumber3]
-
-            return luckyNumber
-        
-        lucky_number = random_lucky_number()
-        
-        random_age = random_age()
-        
-        random_member = randomName(names)
-
-        newMember = {
+        new_member = {
             "id": self._generateId(),
-            "first_name": random_member,
+            "first_name": member.get('first_name'),
             "last_name": self.last_name,
-            "age": random_age,
-            "lucky_numbers": lucky_number,
+            "age": member.get('age'),
+            "lucky_numbers": member.get('lucky_numbers')
         }
 
-        self._members.append(newMember)
+        self._members.append(new_member)
 
-        return newMember
+        return new_member
+
 
     def delete_member(self, id):
         # fill this method and update the return
-        pass
+        for member in self._members:
+            if member["id"] == id:
+                self._members.remove(member)
+                
 
     def get_member(self, id):
         # fill this method and update the return
-        data = request.json
-        memberID = self._members.filter_by(memberID = id)
-        pass
+       for member in self._members:
+            if member["id"] == id:
+                return member
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
